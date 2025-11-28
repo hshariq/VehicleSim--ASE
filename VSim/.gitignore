@@ -1,0 +1,14 @@
+# Ignore compiled Java bytecode
+*.class
+
+# Ignore common project files and IDE artifacts
+.classpath
+.project
+.settings/
+
+# Ignore documents and archives
+*.pdf
+*.zip
+
+# Ignore VS Code files
+.vscode/
