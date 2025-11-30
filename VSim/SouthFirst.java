@@ -1,15 +1,14 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
-* 
-* Implements the SouthFirst path-finding algorithm. 
-* 
-* @author MEZZO Inc.
-* 
-*/
+ * 
+ * Implements the SouthFirst path-finding algorithm.
+ * 
+ * @author MEZZO Inc.
+ * 
+ */
 
 public class SouthFirst {
 
@@ -19,7 +18,7 @@ public class SouthFirst {
         int currentY = startY;
 
         while (currentX != destX || currentY != destY) {
-            path.add(new int[] {currentX, currentY});
+            path.add(new int[] { currentX, currentY });
 
             // Try to move south if possible
             if (currentY < destY) {
@@ -27,16 +26,14 @@ public class SouthFirst {
             } else if (currentX > destX) {
                 currentX--; // If south is not possible, try to move west
             } else if (currentY > destY) {
-                currentY--;  // If west and south are not possible, try to move north
+                currentY--; // If west and south are not possible, try to move north
             } else if (currentX < destX) {
-                currentX++;  // If west, north, and south are not possible, move east
+                currentX++; // If west, north, and south are not possible, move east
             }
         }
 
-        path.add(new int[] {destX, destY});  // Add the destination as the last step
+        path.add(new int[] { destX, destY }); // Add the destination as the last step
         return path;
     }
-
-
 
 }

@@ -3,22 +3,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-* 
-* Manages a rectangular grid, and the occupation of each grid square with {@link Vehicle} instances. 
-* 
-* @author MEZZO Inc.
-* 
-*/
-
+ * 
+ * Manages a rectangular grid, and the occupation of each grid square with
+ * {@link Vehicle} instances.
+ * 
+ * @author MEZZO Inc.
+ * 
+ */
 
 public class Grid {
     private final int rows;
     private final int cols;
     private final Map<String, Vehicle> occupiedSquares;
 
+    // Constructor
     public Grid(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
+        // initialize the map to keep track of occupied squares
         this.occupiedSquares = new HashMap<>();
     }
 
@@ -38,13 +40,11 @@ public class Grid {
         occupiedSquares.put(x + "," + y, vehicle);
     }
 
-
-    public synchronized void immediateRelease(int x, int y, Vehicle vehicle){
+    public synchronized void immediateRelease(int x, int y, Vehicle vehicle) {
         if (occupiedSquares.get(x + "," + y) == vehicle) {
             occupiedSquares.remove(x + "," + y);
             notifyAll();
-        }
-        else{
+        } else {
 
             System.out.println("FATAL ERROR");
         }

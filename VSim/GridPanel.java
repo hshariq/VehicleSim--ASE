@@ -6,34 +6,35 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
-* 
-* Graphical user interface representation of a grid square. Responsible for drawing its occupying {@link Vehicle} and the segment of the Vehicle's path that intersects itself. 
-* 
-* @author MEZZO Inc.
-* 
-*/
+ * 
+ * Graphical user interface representation of a grid square. Responsible for
+ * drawing its occupying {@link Vehicle} and the segment of the Vehicle's path
+ * that intersects itself.
+ * 
+ * @author MEZZO Inc.
+ * 
+ */
 
-
+// this inherits from the JPanel from Java Swing library
 public class GridPanel extends JPanel {
     private final int cellSize;
 
     private final JTextArea logArea;
     public Grid grid;
 
-
     public GridPanel(int cellSize, JTextArea logArea, Grid grid) {
         this.cellSize = cellSize;
         this.logArea = logArea;
         this.grid = grid;
+        // all dones to define the size of the panel
         setPreferredSize(new Dimension(grid.getCols() * cellSize, grid.getRows() * cellSize));
     }
 
-    public void log(String s){
+    public void log(String s) {
 
         logArea.append(s);
 
     }
-
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -65,28 +66,26 @@ public class GridPanel extends JPanel {
         }
     }
 
-
     private void drawVehiclePaths(Graphics g) {
         ArrayList<Vehicle> vehList = getActiveVehicles();
-        for (Vehicle veh : vehList)  {
+        for (Vehicle veh : vehList) {
             g.setColor(veh.getColor());
 
             List<int[]> vehPath = veh.getPath();
-            for(int i=0; i<vehPath.size()-1;i++){
+            for (int i = 0; i < vehPath.size() - 1; i++) {
 
                 int[] src = vehPath.get(i);
-                int[] dst = vehPath.get(i+1);
+                int[] dst = vehPath.get(i + 1);
 
-                g.drawLine((src[0]* cellSize)+cellSize/2, (src[1]* cellSize)+cellSize/2, (dst[0]* cellSize)+cellSize/2, (dst[1]* cellSize)+cellSize/2);
-
+                g.drawLine((src[0] * cellSize) + cellSize / 2, (src[1] * cellSize) + cellSize / 2,
+                        (dst[0] * cellSize) + cellSize / 2, (dst[1] * cellSize) + cellSize / 2);
 
             }
 
         }
     }
 
-
-    private ArrayList<Vehicle> getActiveVehicles(){
+    private ArrayList<Vehicle> getActiveVehicles() {
         HashSet<Vehicle> vehList = new HashSet<Vehicle>();
         for (int row = 0; row < grid.getRows(); row++) {
             for (int col = 0; col < grid.getCols(); col++) {
@@ -101,7 +100,5 @@ public class GridPanel extends JPanel {
         return new ArrayList<Vehicle>(vehList);
 
     }
-
-
 
 }

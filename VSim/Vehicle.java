@@ -1,18 +1,20 @@
 
-
 import java.util.List;
 import java.awt.*;
 import java.util.Random;
 
-
 /**
-* 
-* Models a vehicle and handles its state and behaviour during a simulation. 
-* 
-* @author MEZZO Inc.
-* 
-*/
+ * 
+ * Models a vehicle and handles its state and behaviour during a simulation.
+ * 
+ * @author MEZZO Inc.
+ * 
+ */
 
+// implements runnable so that each vehicle can run in its own thread
+// By adding implements Runnable, the Vehicle class promises to provide the code
+// for the single required method, run(), thereby fulfilling the contract needed
+// for it to be executed by a separate Thread.
 public class Vehicle implements Runnable {
     private int currentX;
     private int currentY;
@@ -42,6 +44,7 @@ public class Vehicle implements Runnable {
         this.sim = sim;
         this.grid = sim.getGrid();
         this.logArea = sim.getLogger();
+        // u know the path from northfirst class
         this.path = nf.findNorthFirstPath(grid, startX, startY, destX, destY);
         this.color = generateRandomColor();
     }
@@ -61,7 +64,7 @@ public class Vehicle implements Runnable {
         this.color = generateRandomColor();
     }
 
-    public List<int[]> getPath(){
+    public List<int[]> getPath() {
         return path;
     }
 
@@ -77,19 +80,23 @@ public class Vehicle implements Runnable {
         return color;
     }
 
-    public int[] getStep(){
+    public int[] getStep() {
         return step;
     }
 
     @Override
+    // triggered when thread is started
     public void run() {
         try {
             creationTime = System.currentTimeMillis();
-            occupy(new int[]{currentX, currentY});
+            // chekcs if vehicle can occupy the starting grid square
+            occupy(new int[] { currentX, currentY });
             startTime = System.currentTimeMillis();
+            // vehicle starts moving along its path
             move();
             endTime = System.currentTimeMillis();
             logArea.append("Vehicle " + this + " completed in " + (endTime - startTime) / 1000 + " seconds\n");
+            // vehicle is removed from simulation once it reaches its destination
             sim.removeVehicle(this);
             grid.immediateRelease(currentX, currentY, this); // release the last grid square
             sim.refresh();
@@ -97,7 +104,6 @@ public class Vehicle implements Runnable {
             e.printStackTrace();
         }
     }
-
 
     private void occupy(int[] gridSquare) throws InterruptedException {
         logArea.append(this + " trying to occupy gridsquare " + gridSquare[0] + "," + gridSquare[1]);
@@ -107,7 +113,8 @@ public class Vehicle implements Runnable {
                 logArea.append(this + "waiting for (" + gridSquare[0] + "," + gridSquare[1] + ")");
                 grid.wait();
             }
-            logArea.append(gridSquare[0] + "," + gridSquare[1] + " gridsquare (" + gridSquare[0] + "," + gridSquare[1] + ")free");
+            logArea.append(gridSquare[0] + "," + gridSquare[1] + " gridsquare (" + gridSquare[0] + "," + gridSquare[1]
+                    + ")free");
             grid.occupy(gridSquare[0], gridSquare[1], this);
             sim.refresh();
         }
@@ -117,7 +124,7 @@ public class Vehicle implements Runnable {
     }
 
     private void move() throws InterruptedException {
-        for (int hop=1; hop<path.size();hop++) { // iterates over path from index 1 onwards
+        for (int hop = 1; hop < path.size(); hop++) { // iterates over path from index 1 onwards
 
             step = path.get(hop);
 

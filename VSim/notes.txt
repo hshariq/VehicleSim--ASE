@@ -1,2 +1,9 @@
 javac *.java- compile all classes
+
+better way:
+javac *.java -d target 
+Run unit tests in class PathIntersection:  
+java -cp target PathIntersection 
+
+
 run simualtion: java GUILauncher
