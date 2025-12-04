@@ -23,12 +23,14 @@
 
 ## How to run:
 
+- cd VSim
 - mvn test # Run all tests
 - mvn compile # Compile everything
 - java -cp target/classes GUILauncher # Run GUI
 
-If not wokring- do a manual run:
+## If Path not working- manually set:
 
-- javac -cp ".;lib/_" _.java -d target
-- java -cp "target;lib/\*" org.junit.runner.JUnitCore PathIntersectionTest
-- java -cp "target" GUILauncher
+- $env:Path -split ';' | Select-String "maven" | Select-Object -First 5
+- $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
+- mvn test
+- java -cp target/classes GUILauncher
