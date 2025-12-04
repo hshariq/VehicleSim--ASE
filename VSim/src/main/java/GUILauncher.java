@@ -1,6 +1,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * 
@@ -17,11 +18,19 @@ public class GUILauncher {
 
     }
 
+    private static PathFinderFactory pathfinderfactory;
+    static Random rnd;
+    private static final long seed = 42;
+
     private static void createAndShowGUI() {
         // Create and set up the window.
         JFrame frame = new JFrame("Vehicle Simulator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+
+        rnd = new Random(seed);
+        // initialize pathfinder factory
+        pathfinderfactory = new PathFinderFactory(rnd);
 
         int rows = 20;
         int cols = 20;
@@ -64,7 +73,14 @@ public class GUILauncher {
             int timePerSquare = Integer.parseInt(timePerSquareField.getText());
 
             // vehicl object created with northfirst strategy by default- vehicle.java
-            Vehicle vehicle = new Vehicle(startX, startY, destX, destY, timePerSquare, new NorthFirst(), sim);
+            // this is where our nrothfirst is hardcoded, we wnat it to be random
+            PathFinder pathfinder = pathfinderfactory.createPathFinder();
+            // // print
+            System.out.println("Vehicle uses " + pathfinder.getClass().getSimpleName() + " pathfinder.");
+            // Vehicle vehicle = new Vehicle(startX, startY, destX, destY, timePerSquare,
+            // new NorthFirst(), sim);
+
+            Vehicle vehicle = new Vehicle(startX, startY, destX, destY, timePerSquare, pathfinder, sim);
             // vehicle is added to simulation
             sim.addVehicle(vehicle);
             // vehicle thread is started

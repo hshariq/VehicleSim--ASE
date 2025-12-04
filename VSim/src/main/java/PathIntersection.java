@@ -65,42 +65,43 @@ public class PathIntersection {
 
     }
 
-    public static void main(String[] args) {
+    // we remove the main method used for testing
+    // public static void main(String[] args) {
 
-        // testing
+    // // testing
 
-        List<int[]> path_i = new ArrayList<int[]>();
-        List<int[]> path_j = new ArrayList<int[]>();
+    // List<int[]> path_i = new ArrayList<int[]>();
+    // List<int[]> path_j = new ArrayList<int[]>();
 
-        int[] i23 = { 2, 3 };
-        path_i.add(i23);
-        int[] i24 = { 2, 4 };
-        path_i.add(i24);
-        int[] i25 = { 2, 5 };
-        path_i.add(i25);
+    // int[] i23 = { 2, 3 };
+    // path_i.add(i23);
+    // int[] i24 = { 2, 4 };
+    // path_i.add(i24);
+    // int[] i25 = { 2, 5 };
+    // path_i.add(i25);
 
-        int[] j26 = { 2, 6 };
-        path_j.add(j26);
-        int[] j25 = { 2, 5 };
-        path_j.add(j25);
-        int[] j24 = { 2, 4 };
-        path_j.add(j24);
+    // int[] j26 = { 2, 6 };
+    // path_j.add(j26);
+    // int[] j25 = { 2, 5 };
+    // path_j.add(j25);
+    // int[] j24 = { 2, 4 };
+    // path_j.add(j24);
 
-        PathIntersection id = new PathIntersection(path_i, path_j);
-        System.out.println("shared path length: " + id.getSharedPathLength());
-        System.out.println("should be: 2");
+    // PathIntersection id = new PathIntersection(path_i, path_j);
+    // System.out.println("shared path length: " + id.getSharedPathLength());
+    // System.out.println("should be: 2");
 
-        System.out.println();
+    // System.out.println();
 
-        List<int[]> sp = id.getSharedPath();
-        String sps = "";
-        for (int i = 0; i < sp.size(); i++) {
-            int[] p = sp.get(i);
-            sps = sps + "(" + p[0] + "," + p[1] + ") ";
-        }
-        System.out.println("shared path: " + sps);
-        System.out.println("should be: (2,4) (2,5)");
+    // List<int[]> sp = id.getSharedPath();
+    // String sps = "";
+    // for (int i = 0; i < sp.size(); i++) {
+    // int[] p = sp.get(i);
+    // sps = sps + "(" + p[0] + "," + p[1] + ") ";
+    // }
+    // System.out.println("shared path: " + sps);
+    // System.out.println("should be: (2,4) (2,5)");
 
-    }
+    // }
 
 }

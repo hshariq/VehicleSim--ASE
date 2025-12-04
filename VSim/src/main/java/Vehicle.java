@@ -33,7 +33,9 @@ public class Vehicle implements Runnable {
     public long startTime;
     public long endTime;
 
-    public Vehicle(int startX, int startY, int destX, int destY, int timePerSquare, NorthFirst nf, Simulation sim) {
+    // have to change the client classes accordingly
+    public Vehicle(int startX, int startY, int destX, int destY, int timePerSquare, PathFinder pathfinder,
+            Simulation sim) {
         this.startX = startX;
         this.startY = startY;
         this.currentX = startX;
@@ -45,7 +47,10 @@ public class Vehicle implements Runnable {
         this.grid = sim.getGrid();
         this.logArea = sim.getLogger();
         // u know the path from northfirst class
-        this.path = nf.findNorthFirstPath(grid, startX, startY, destX, destY);
+        this.path = pathfinder.calculatePath(grid, startX, startY, destX, destY);
+        // System.out.println("Vehicle created with " +
+        // pathfinder.getClass().getSimpleName() + " pathfinder.");
+        // this.path = pathfinder.calculatePath(grid, startX, startY, destX, destY);
         this.color = generateRandomColor();
     }
 

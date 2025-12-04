@@ -48,7 +48,7 @@ public class Simulation {
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
         if (hasGUI)
-            panel.log("Vehicle added: " + vehicle + "\n");
+            panel.log(" Vehicle added: " + vehicle + "\n");
     }
 
     public void removeVehicle(Vehicle vehicle) {

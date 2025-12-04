@@ -10,9 +10,10 @@ import java.util.List;
  * 
  */
 
-public class SouthFirst {
+public class SouthFirst implements PathFinder {
 
-    public List<int[]> findSouthFirstPath(Grid grid, int startX, int startY, int destX, int destY) {
+    @Override
+    public List<int[]> calculatePath(Grid grid, int startX, int startY, int destX, int destY) {
         List<int[]> path = new ArrayList<>();
         int currentX = startX;
         int currentY = startY;

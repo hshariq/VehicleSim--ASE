@@ -10,9 +10,12 @@ import java.util.List;
  * 
  */
 
-public class NorthFirst {
+// update these methods to implement the interface
+public class NorthFirst implements PathFinder {
 
-    public List<int[]> findNorthFirstPath(Grid grid, int startX, int startY, int destX, int destY) {
+    @Override
+    public List<int[]> calculatePath(Grid grid, int startX, int startY, int destX, int destY) {
+        // no changes in the logic of northfirst
         List<int[]> path = new ArrayList<>();
         int currentX = startX;
         int currentY = startY;
