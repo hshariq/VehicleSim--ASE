@@ -34,3 +34,9 @@
 - $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 - mvn test
 - java -cp target/classes GUILauncher
+
+## Known Limitations / Future Improvements:
+
+- GUI lacks input validation (empty fields cause NumberFormatException)
+- Could add dropdown for manual pathfinder selection
+- Could implement more advanced pathfinding algorithms
