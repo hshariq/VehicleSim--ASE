@@ -27,6 +27,7 @@
 - mvn test # Run all tests
 - mvn compile # Compile everything
 - java -cp target/classes GUILauncher # Run GUI
+- Can also clone git repo if run into any issue: gh repo clone hshariq/VehicleSim--ASE
 
 ## If Path not working- manually set:
 
