@@ -1,0 +1,34 @@
+With Vehicle:
+
+Grid
+Association/Composition (The Vehicle needs the Grid to move)
+1
+private final Grid grid; (Strong reference)
+
+Simulation
+Association/Composition (The Vehicle reports to the Simulation and needs its state)
+1
+private final Simulation sim; (Strong reference)
+
+
+Logger
+Association
+1
+private final Logger logArea; (Strong reference)
+
+
+PathFinder
+Dependency/Association (Used only in one constructor to get the path)
+1 (in one constructor)
+"Vehicle(..., PathFinder pathfinder, ...)"
+
+
+Color
+Association
+1
+private final Color color;
+
+
+Runnable
+Realization/Implementation
+N/A,public class Vehicle implements Runnable

@@ -1,0 +1,25 @@
+Vehicle+ Simulation:
+
+    Since simulation is made itself, it is not gonna be affected by vehicle
+
+    and since one simulation can have many vehicles
+    a simaultion can exist even if no vheicle
+
+    it will hvae
+    Vehicle 0..* -<>(aggregation) 1 Simulation
+
+    - Simulation holds a List<Vehicle>.
+    - Vehicles are added/removed dynamically (addVehicle(), removeVehicle()).
+    - Vehicles are not destroyed automatically when Simulation ends — they can be created outside and passed in.
+    - This matches aggregation semantics.
+    - Simulation is the “whole” (it aggregates Vehicles).
+    - Vehicle is the “part” (it belongs to a Simulation).
+    - So the diamond should be drawn on the Simulation end of the line.
+
+
+
+Vehicl + Grid:
+
+    - Composition (filled diamond): Grid would own vehicles, and destroying the grid would destroy them. →  Not true here.
+    - Aggregation (hollow diamond): Grid is a container of vehicles, but vehicles can exist independently. → Possible, but not quite exact since Grid doesn’t store vehicles directly, only references in a map.
+    - Association (plain line): Vehicle uses Grid, and Grid knows about Vehicles. →This is the most accurate representation.
